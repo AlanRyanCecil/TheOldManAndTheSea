@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/image/environment/water.png" type="Texture" id=1]
+
+
+[node name="Water" type="ParallaxBackground"]
+layer = -99
+offset = Vector2( 0, -1100 )
+transform = Transform2D( 1, 0, 0, 1, 0, -1100 )
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 4032, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

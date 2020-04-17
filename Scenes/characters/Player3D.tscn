@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/characters/Player3D.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/environment/Camera3D.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[node name="Player3D" type="KinematicBody"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.364712, 5.44885 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 5, 0, 0, 0, 4.999, -0.0999153, 0, 0.0999153, 4.999, 0, 2.61422, 9.79602 )
+fov = 50.0
+script = ExtResource( 2 )
+
+[node name="Cone" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.250262, 0.968178, 0, -0.968178, 0.250262, 0, 0, 0 )
+radius = 0.457
+height = 2.038
+sides = 12
+cone = true
+smooth_faces = false
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0 )
+shape = SubResource( 1 )
