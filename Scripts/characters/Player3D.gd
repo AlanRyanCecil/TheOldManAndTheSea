@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const SPEED = 20
+const SPEED = 5
 const ROT_SPEED = 0.2
 
 onready var playerBody = $Cone
@@ -24,15 +24,9 @@ func get_direction():
 
 func walk_forward(direction):
 	var walk = direction.normalized() * SPEED
-	var forward = Vector3.ZERO
 	var xbasis = get_transform().basis
-
-	# Primary influence
-	forward.x += walk.x * xbasis.x.x
-	forward.z += walk.z * xbasis.z.z
-	# Secondary influence
-	forward.x += walk.z * xbasis.z.x
-	forward.z += walk.x * xbasis.x.z
+	var forward = walk.x * xbasis.x.normalized()
+	forward += walk.z * xbasis.z.normalized()
 	return forward
 
 

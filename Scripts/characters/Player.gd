@@ -9,9 +9,6 @@ var y_input
 var motion = Vector2.ZERO
 var time = 0
 
-func _input(event):
-	print(event.position)
-
 func _physics_process(delta):
 	time += 0.01
 	waves()
