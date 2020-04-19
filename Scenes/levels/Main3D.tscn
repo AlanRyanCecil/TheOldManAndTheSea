@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/items/Boat .tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/items/Crate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/environment/Island .tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/characters/Player3D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GUI/Pause Menu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ProceduralSky" id=1]
+ground_bottom_color = Color( 0, 0.149333, 0.32, 1 )
+ground_horizon_color = Color( 0.243, 0.53865, 0.9, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
@@ -90,16 +94,73 @@ transform = Transform( 0.470982, 0.57594, 0.668184, -0.774117, 0.633043, -2.5223
 [node name="Crate 9" parent="Crates" instance=ExtResource( 2 )]
 transform = Transform( 0.119792, -0.935073, 0.3336, -0.265343, 0.293641, 0.918351, -0.956683, -0.19853, -0.212939, 0.276214, 6.29964, 4.58056 )
 
+[node name="Crate 32" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.3009, -0.54164, -0.784911, -0.468332, 0.633043, -0.616379, 0.830738, 0.553067, -0.0631848, 0.709423, 5.27551, 4.47303 )
+
+[node name="Crate 31" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.218956, 0.945866, -0.239576, -0.891752, 0.293641, 0.344316, 0.396026, 0.138253, 0.907772, 0.118746, 6.00849, 3.89456 )
+
+[node name="Crate 30" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.7426, -0.0959903, -0.66282, -0.468331, 0.633043, -0.616379, 0.47876, 0.768142, 0.425142, 0.824271, 6.11166, 4.23505 )
+
+[node name="Crate 29" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.414095, 0.83636, 0.359205, -0.891752, 0.293641, 0.344316, 0.182495, -0.462901, 0.867421, 0.00389886, 6.84464, 4.13254 )
+
+[node name="Crate 28" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.514039, 0.762615, 0.392661, -0.468332, 0.633043, -0.616378, -0.718631, 0.132947, 0.682565, 0.485077, 6.52588, 3.77655 )
+
+[node name="Crate 27" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.202265, -0.422001, 0.883744, -0.891751, 0.293641, 0.344316, -0.404805, -0.857723, -0.316927, 0.343093, 7.25886, 4.59103 )
+
+[node name="Crate 26" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.0262547, 0.687334, 0.725866, -0.468331, 0.633043, -0.616379, -0.883163, -0.356129, 0.30528, 0.223912, 7.36203, 3.81676 )
+
+[node name="Crate 25" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.0842475, -0.855305, 0.51123, -0.891752, 0.293641, 0.344316, -0.444613, -0.426882, -0.787459, 0.604258, 8.09501, 4.55083 )
+
+[node name="Crate 24" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.870252, 0.209905, -0.445647, -0.468331, 0.633043, -0.616378, 0.152733, 0.745115, 0.649212, 0.811981, 7.51254, 4.07171 )
+
+[node name="Crate 23" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.452465, 0.590894, 0.667922, -0.891752, 0.293641, 0.344316, 0.00732547, -0.751411, 0.659793, 0.0161892, 8.24553, 4.29588 )
+
+[node name="Crate 22" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.784966, 0.618335, 0.0386267, -0.468331, 0.633043, -0.616379, -0.405581, 0.465746, 0.786502, 0.662795, 8.3487, 3.8536 )
+
+[node name="Crate 21" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 0.364462, 0.0150442, 0.931097, -0.891752, 0.293641, 0.344316, -0.268228, -0.955797, 0.120437, 0.165375, 9.08168, 4.51398 )
+
+[node name="Crate 20" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.367228, 0.495042, 0.787449, -0.468332, 0.633043, -0.616378, -0.803623, -0.595139, -0.000627398, 0.0962799, 8.76292, 3.91944 )
+
+[node name="Crate 19" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.250328, -0.953958, 0.165228, -0.891752, 0.293641, 0.344316, -0.376981, -0.0611502, -0.9242, 0.73189, 9.4959, 4.44815 )
+
+[node name="Crate 18" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.778954, 0.0334286, 0.626191, -0.468332, 0.633043, -0.616379, -0.41701, -0.773395, -0.477456, 0.00109327, 9.59907, 4.16594 )
+
+[node name="Crate 17" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( -0.427521, -0.796099, -0.428314, -0.891752, 0.293641, 0.344316, -0.148339, 0.529153, -0.83546, 0.827077, 10.332, 4.20164 )
+
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+visible = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Mesh" type="CSGMesh" parent="Floor"]
+cast_shadow = 0
 mesh = SubResource( 3 )
 material = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 5 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[node name="Island " parent="." instance=ExtResource( 3 )]
+
+[node name="Pause Menu" parent="." instance=ExtResource( 5 )]
+pause_mode = 2

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Materials/crateWood_.material" type="Material" id=1]
+[ext_resource path="res://Scripts/items/Crate.gd" type="Script" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "CrateMesh"
@@ -20,8 +21,28 @@ surfaces/0 = {
 [sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( -0.248857, 0.2899, 0.156495, -0.247914, 0.289348, -0.1566, -0.247425, 0, -0.156292, -0.247425, 0, 0.155592, 0.247009, 0, -0.156292, 0.247009, 0, 0.155592, 0.247498, 0.289348, -0.1566, 0.248441, 0.2899, 0.156495 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "shrink"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.2, 1.2, 1.2 ), Vector3( 0.01, 0.01, 0.01 ) ]
+}
+
 [node name="Crate " type="RigidBody"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 3
+contacts_reported = 4
+contact_monitor = true
+script = ExtResource( 2 )
 
 [node name="CrateMesh" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
@@ -29,3 +50,13 @@ material/0 = null
 
 [node name="shape0" type="CollisionShape" parent="."]
 shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shrink = SubResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_Crate__body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
