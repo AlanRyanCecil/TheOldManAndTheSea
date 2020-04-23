@@ -5,8 +5,6 @@
 [ext_resource path="res://Shaders/water_line.shader" type="Shader" id=3]
 [ext_resource path="res://Scenes/environment/Storm.tscn" type="PackedScene" id=4]
 
-
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
 shader_param/water_line = 2.15
@@ -32,8 +30,9 @@ lifetime = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
-position = Vector2( 122, 0 )
+position = Vector2( -3.8644, -29.084 )
 texture = ExtResource( 2 )
+offset = Vector2( 125.864, 29.084 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

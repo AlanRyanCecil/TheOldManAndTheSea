@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/items/Boat .tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/items/Crate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/environment/Island .tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/characters/Player3D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/GUI/Pause Menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ProceduralSky" id=1]
-ground_bottom_color = Color( 0, 0.149333, 0.32, 1 )
-ground_horizon_color = Color( 0.243, 0.53865, 0.9, 1 )
+radiance_size = 0
+ground_bottom_color = Color( 0.0941176, 0.329412, 0.368627, 1 )
+ground_horizon_color = Color( 0.4386, 0.60716, 0.86, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
@@ -37,17 +39,23 @@ transform = Transform( 0.870759, -1.68269e-08, 0.491709, -0.383648, 0.625488, 0.
 light_color = Color( 0.97, 0.936212, 0.8633, 1 )
 light_energy = 0.8
 shadow_enabled = true
+shadow_bias = 0.01
+directional_shadow_depth_range = 1
 
 [node name="Player3D" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.369254, 7.31418 )
 
 [node name="Boat " parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.605788, 0.0619511, 0.793211, 0.784823, 0.11721, -0.608536, -0.130671, 0.991173, 0.0223836, -3.4056, 2.50461, 2.73252 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -30 )
+mode = 1
 
 [node name="Crates" type="Node" parent="."]
 
 [node name="Crate " parent="Crates" instance=ExtResource( 2 )]
 transform = Transform( -0.633043, -0.774117, -2.06271e-07, -0.774117, 0.633043, -2.52239e-07, 3.25841e-07, 0, -1, 0, 1.2431, 4.68639 )
+
+[node name="Crate 33" parent="Crates" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015758, 2.7597e-05, 6.24691 )
 
 [node name="Crate 2" parent="Crates" instance=ExtResource( 2 )]
 transform = Transform( -0.728365, 0.563037, -0.390479, -0.265343, 0.293641, 0.918351, 0.631726, 0.772506, -0.0644799, 0, 1.97608, 3.85963 )
@@ -164,3 +172,5 @@ shape = SubResource( 5 )
 
 [node name="Pause Menu" parent="." instance=ExtResource( 5 )]
 pause_mode = 2
+
+[node name="GUI" parent="." instance=ExtResource( 6 )]
