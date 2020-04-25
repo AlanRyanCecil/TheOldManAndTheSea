@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sea/sea_isometric.png" type="Texture" id=1]
+[ext_resource path="res://Sea/Sea_iso_code.gd" type="Script" id=2]
+
+[node name="Sea_iso_code" type="ParallaxBackground"]
+layer = 0
+script = ExtResource( 2 )
+
+[node name="Waves" type="ParallaxLayer" parent="."]
+z_index = 1
+motion_scale = Vector2( 0.05, 1 )
+motion_mirroring = Vector2( 3838, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Waves"]
+margin_right = 3840.0
+margin_bottom = 2161.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

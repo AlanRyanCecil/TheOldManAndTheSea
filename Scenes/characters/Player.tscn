@@ -1,23 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/characters/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/image/characters/bigBoat.png" type="Texture" id=2]
-[ext_resource path="res://Shaders/water_line.shader" type="Shader" id=3]
 [ext_resource path="res://Scenes/environment/Storm.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
-shader_param/water_line = 2.15
-shader_param/wave_length = 0.5
-shader_param/amplitude = 0.1
-shader_param/frequency = 2.0
-
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 47.3679
 height = 276.669
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 811.204 )
+rotation = -0.270526
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -29,8 +22,8 @@ amount = 12
 lifetime = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 1 )
 position = Vector2( -3.8644, -29.084 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 offset = Vector2( 125.864, 29.084 )
 
@@ -38,13 +31,9 @@ offset = Vector2( 125.864, 29.084 )
 visible = false
 position = Vector2( 82.458, 29.4224 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 500, 0 )
+position = Vector2( 600, -100 )
 current = true
-limit_top = 0
-limit_bottom = 1080
-limit_smoothed = true
-smoothing_enabled = true
 smoothing_speed = 0.8

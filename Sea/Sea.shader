@@ -31,7 +31,7 @@ const vec2 offset = vec2(2.0, 2.0);
 
 void vertex() {
 	float height = fbm((VERTEX.xz + offset) * TIME * 0.05);
-	VERTEX.y = height * 0.05;
-	VERTEX.y += sin(VERTEX.x * 4.0 + TIME * 2.0) * 0.04;
+//	VERTEX.y = height * 0.05;
+	VERTEX.y += sin(VERTEX.x * 4.0 + TIME * 2.0) * 8.0;
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/environment/Storm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/characters/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scripts/levels/Main.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/environment/Cloud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/environment/Sky.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sea/SeaIso.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sea/Sea_iso_code.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -42,9 +44,6 @@ script = ExtResource( 4 )
 visible = false
 position = Vector2( 414.365, 162.635 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1003.85, 754.759 )
-
 [node name="Sea" parent="." instance=ExtResource( 3 )]
 script = null
 
@@ -53,8 +52,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Storm" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource( 2 )
 margin_left = 621.0
 margin_top = 277.0
@@ -63,4 +64,30 @@ margin_bottom = 883.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SeaIsoBack" parent="." instance=ExtResource( 7 )]
+layer = -100
+offset = Vector2( -2000, 0 )
+rotation = -0.270526
+scale = Vector2( 0.999999, 0.999999 )
+transform = Transform2D( 0.96363, -0.267238, 0.267238, 0.96363, -2000, 0 )
+
+[node name="SeaIsoBack2fore" parent="." instance=ExtResource( 7 )]
+offset = Vector2( -2000, 0 )
+rotation = -0.270526
+scale = Vector2( 0.999999, 0.999999 )
+transform = Transform2D( 0.96363, -0.267238, 0.267238, 0.96363, -2000, 0 )
+
+[node name="Sea_iso_code" parent="." instance=ExtResource( 8 )]
+layer = -1
+offset = Vector2( -1000, 0 )
+rotation = -0.270526
+scale = Vector2( 0.999999, 0.999999 )
+transform = Transform2D( 0.96363, -0.267238, 0.267238, 0.96363, -1000, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 562.331, 795.39 )
+z_index = 2
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="SeaIsoBack2fore"]

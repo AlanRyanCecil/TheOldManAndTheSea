@@ -55,7 +55,7 @@ mode = 1
 transform = Transform( -0.633043, -0.774117, -2.06271e-07, -0.774117, 0.633043, -2.52239e-07, 3.25841e-07, 0, -1, 0, 1.2431, 4.68639 )
 
 [node name="Crate 33" parent="Crates" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015758, 2.7597e-05, 6.24691 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015758, 0.148915, 6.24691 )
 
 [node name="Crate 2" parent="Crates" instance=ExtResource( 2 )]
 transform = Transform( -0.728365, 0.563037, -0.390479, -0.265343, 0.293641, 0.918351, 0.631726, 0.772506, -0.0644799, 0, 1.97608, 3.85963 )
