@@ -16,12 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Old Man and the Sea"
-run/main_scene="res://Scenes/levels/Main2D.tscn"
+run/main_scene="res://Main/Main3D.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-Global="*res://Scripts/global.gd"
 
 [display]
 

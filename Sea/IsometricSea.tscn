@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sea/IsometricSea.gd" type="Script" id=1]
+[ext_resource path="res://Sea/ParallaxSea.tscn" type="PackedScene" id=2]
+
+[node name="IsometricSea" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ParallaxSea" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 0.999999, 0.999999 )
+transform = Transform2D( 0.965925, -0.258819, 0.258819, 0.965925, -1000, 0 )

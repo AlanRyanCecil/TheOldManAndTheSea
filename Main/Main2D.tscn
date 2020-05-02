@@ -1,0 +1,149 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://environment/Storm.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Boat/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://environment/Sea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://environment/Cloud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://environment/Sky.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sea/IsometricSea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/SceneChanger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Boat/Boat .tscn" type="PackedScene" id=10]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+onready var Sea = load(\"res://Scenes/environment/Sea.tscn\")
+
+onready var Player = $Player
+onready var timer = $Timer
+const seaWidth = 3840
+const blockStart = 1600
+const blockWidth = 100
+var waters = []
+var blocks = []
+
+
+
+func addSea(x):
+	var sea = Sea.instance()
+	waters.append(sea)
+	sea.set_position(Vector2(x, 0))
+	add_child(sea)
+
+
+func _ready():
+	$Storm.emitting  = true
+	yield(get_tree().create_timer(5), \"timeout\")
+	get_tree().change_scene(\"res://Main/Main3D.tscn\")
+"
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+const vec3 blue = vec3(0, 0, 0.3);
+const vec3 red = vec3(0, 0.5, 0.7);
+
+vec3 hsb2rgb( in vec3 c ){
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0), 6.0)-3.0)-1.0, 0.0, 1.0);
+    rgb = rgb*rgb*(3.0-2.0*rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
+}
+void fragment(){
+    vec2 st = FRAGCOORD.xy/(1.0/SCREEN_PIXEL_SIZE);
+	st = 1.0 - UV;
+    vec3 color = vec3(0.0);
+
+    // We map x (0.0 - 1.0) to the hue (0.0 - 1.0)
+    // And the y (0.0 - 1.0) to the brightness
+    color = hsb2rgb(vec3(st.x, 1.0, st.y));
+	
+	COLOR = vec4(color,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[node name="Main" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="SceneChanger" parent="." instance=ExtResource( 9 )]
+layer = 100
+
+[node name="Sky" parent="." instance=ExtResource( 6 )]
+
+[node name="Cloud" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 414.365, 162.635 )
+
+[node name="DeepSeaColor" type="ParallaxBackground" parent="."]
+
+[node name="paralaryer" type="ParallaxLayer" parent="DeepSeaColor"]
+motion_mirroring = Vector2( 2400, 0 )
+
+[node name="Green" type="ColorRect" parent="DeepSeaColor/paralaryer"]
+margin_right = 2400.0
+margin_bottom = 1400.0
+color = Color( 0, 0.337255, 0.380392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sea" parent="." instance=ExtResource( 3 )]
+script = null
+
+[node name="Storm" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 3 )
+margin_left = 621.0
+margin_top = 277.0
+margin_right = 1292.0
+margin_bottom = 883.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 566.978, 806.82 )
+rotation = 0.0
+z_index = -200
+
+[node name="IsometricSea" parent="." instance=ExtResource( 8 )]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 697.076
+margin_top = 656.596
+margin_right = 2517.08
+margin_bottom = 1636.6
+rect_scale = Vector2( 0.2, 0.2 )
+stretch = true
+stretch_shrink = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 364, 195 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Boat " parent="ViewportContainer/Viewport" instance=ExtResource( 10 )]
+mode = 1
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 0.5, -0.433013, 0.75, 0, 0.866025, 0.5, -0.866025, -0.25, 0.433013, 3.41648, 2.46438, 1.96898 )
+current = true
+fov = 24.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport"]
+transform = Transform( -0.348424, -0.477632, -0.806516, -0.27227, -0.771763, 0.574675, -0.896922, 0.419821, 0.138856, -10.9005, 8.29195, -1.06092 )
+light_energy = 2.0
+shadow_enabled = true
+
+[editable path="SceneChanger"]
